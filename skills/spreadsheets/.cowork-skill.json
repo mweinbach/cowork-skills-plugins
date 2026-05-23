@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "installationId": "bootstrap-codex-primary-runtime-spreadsheets",
+  "installedAt": "2026-05-19T20:37:50.746Z",
+  "updatedAt": "2026-05-19T20:37:50.746Z",
+  "origin": {
+    "kind": "bootstrap",
+    "url": "https://chatgpt.com/backend-api/plugins/export/curated",
+    "subdir": "plugins/openai-primary-runtime/plugins/spreadsheets/skills/spreadsheets"
+  }
+}
