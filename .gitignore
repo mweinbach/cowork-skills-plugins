@@ -1,0 +1,32 @@
+# Local outputs and scratch
+outputs/
+tmp/
+temp/
+.tmp/
+.temp/
+*.log
+*.tmp
+
+# Office/editor temporary files
+~$*
+*.bak
+
+# Runtime dependencies and build artifacts
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+coverage/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Documents"
+  short_description: "Create and edit document files"
+  icon_small: "./skills/documents/assets/file-document.png"
+  icon_large: "./skills/documents/assets/file-document.png"
+  brand_color: "#2563EB"
+  default_prompt: "Create, edit, redline, or review a document file."
+

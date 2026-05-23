@@ -1,0 +1,8 @@
+interface:
+  display_name: "Presentations"
+  short_description: "Create and edit presentation slide decks"
+  icon_small: "./skills/presentations/assets/file-presentation.png"
+  icon_large: "./skills/presentations/assets/file-presentation.png"
+  brand_color: "#C43E1C"
+  default_prompt: "Create a polished presentation slide deck."
+

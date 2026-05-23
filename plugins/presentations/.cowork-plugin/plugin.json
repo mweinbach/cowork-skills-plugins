@@ -1,0 +1,36 @@
+{
+  "name": "presentations",
+  "version": "0.1.0",
+  "description": "Build polished editable PowerPoint decks with rendered critique and iteration.",
+  "author": {
+    "name": "Cowork"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "presentations",
+    "pptx",
+    "powerpoint",
+    "slides",
+    "deck",
+    "visual-qa"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Presentations",
+    "shortDescription": "Create and edit presentation slide decks",
+    "longDescription": "Build premium editable PPTX decks with narrative editing, artifact-tool presentation JSX, profile-specific guidance, rendered previews, and visual QA.",
+    "developerName": "Cowork",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Create a polished presentation slide deck."
+    ],
+    "brandColor": "#C43E1C",
+    "composerIcon": "./skills/presentations/assets/file-presentation.png",
+    "logo": "./skills/presentations/assets/file-presentation.png",
+    "screenshots": []
+  }
+}
