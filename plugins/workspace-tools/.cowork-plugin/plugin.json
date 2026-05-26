@@ -1,0 +1,37 @@
+{
+  "name": "workspace-tools",
+  "version": "0.1.0",
+  "description": "Create, edit, analyze, and verify documents, presentations, and spreadsheets.",
+  "author": {
+    "name": "Cowork"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "workspace-tools",
+    "documents",
+    "docx",
+    "presentations",
+    "pptx",
+    "spreadsheets",
+    "xlsx",
+    "csv"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Workspace Tools",
+    "shortDescription": "Create and edit documents, presentations, and spreadsheets",
+    "longDescription": "A bundled productivity plugin with document, presentation, and spreadsheet skills for creating, editing, analyzing, and visually verifying workspace artifacts.",
+    "developerName": "Cowork",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Analyze"
+    ],
+    "defaultPrompt": [
+      "Create or update a document, presentation, or spreadsheet artifact."
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

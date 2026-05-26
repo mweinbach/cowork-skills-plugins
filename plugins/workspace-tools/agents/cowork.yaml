@@ -1,0 +1,6 @@
+interface:
+  display_name: "Workspace Tools"
+  short_description: "Create and edit documents, presentations, and spreadsheets"
+  brand_color: "#2563EB"
+  default_prompt: "Create or update a document, presentation, or spreadsheet artifact."
+

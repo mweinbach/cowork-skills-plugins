@@ -12,12 +12,9 @@ to the local plugin packages in `plugins/`.
 
 ## Plugins
 
-- `plugins/documents` for DOCX creation, editing, redlining, comments, OOXML
-  helpers, and render-based verification.
-- `plugins/presentations` for polished editable PPTX decks, claim-spine work,
-  rendered previews, and visual QA.
-- `plugins/spreadsheets` for XLSX/CSV workbook creation, formulas, formatting,
-  charts, domain templates, and verification.
+- `plugins/workspace-tools` bundles the `documents`, `presentations`, and
+  `spreadsheets` skills for creating, editing, analyzing, and verifying common
+  workspace artifacts.
 
 ## Repository Layout
 
@@ -78,10 +75,10 @@ The catalog file follows this shape:
   },
   "plugins": [
     {
-      "name": "documents",
+      "name": "workspace-tools",
       "source": {
         "source": "local",
-        "path": "./plugins/documents"
+        "path": "./plugins/workspace-tools"
       },
       "policy": {
         "installation": "AVAILABLE",
