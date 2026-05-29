@@ -16,6 +16,43 @@
       },
       "category": "Productivity"
     }
+  ],
+  "skills": [
+    {
+      "name": "create-skill",
+      "source": {
+        "source": "local",
+        "path": "./skills/create-skill"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Authoring"
+    },
+    {
+      "name": "create-plugin",
+      "source": {
+        "source": "local",
+        "path": "./skills/create-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Authoring"
+    },
+    {
+      "name": "apple-native-transcribe",
+      "source": {
+        "source": "local",
+        "path": "./skills/apple-native-transcribe"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Productivity"
+    }
   ]
 }
-
