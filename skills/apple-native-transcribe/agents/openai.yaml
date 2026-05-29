@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Native Transcribe"
+  short_description: "Use the CLI for local macOS 26 transcription"
+  default_prompt: "Use $apple-native-transcribe to transcribe a local audio file with the installed CLI on macOS 26 or newer."

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "installationId": "169fdc22-11fe-400b-a955-d2098f864ce7",
+  "installedAt": "2026-03-20T13:27:21.881Z",
+  "updatedAt": "2026-03-20T13:37:08.020Z",
+  "origin": {
+    "kind": "github",
+    "url": "https://github.com/mweinbach/homebrew-max-skills/tree/main/skills/apple-native-transcribe",
+    "repo": "mweinbach/homebrew-max-skills",
+    "ref": "main",
+    "subdir": "skills/apple-native-transcribe"
+  }
+}
