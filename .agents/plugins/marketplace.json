@@ -25,7 +25,7 @@
         "source": "local",
         "path": "./skills/create-skill"
       },
-      "sourceHash": "sha256:c50bae30b28c0dca3e0d28047835289751dd9868ba1b322ed9832d52ec2730c6",
+      "sourceHash": "sha256:d43ba256736e5d2c03fecb03a7ead30bf69e2ba7904ab138a930e6fa3b996c58",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "NONE"
@@ -38,7 +38,7 @@
         "source": "local",
         "path": "./skills/create-plugin"
       },
-      "sourceHash": "sha256:05393be32b1656587727deeb8c519ea0d9ec883acdc71ef8825480d51399d065",
+      "sourceHash": "sha256:82d86d7622aa5ee82669886567a1acac11c83eef4eb3368e3d1c6e5fa1343212",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "NONE"

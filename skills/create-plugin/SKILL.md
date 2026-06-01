@@ -101,6 +101,26 @@ strict manifest keys, kebab-case `name`, `mcpServers`/`apps` as path strings, ev
 resolving **inside** the root, and each bundled `skills/*/SKILL.md` passing the skill checks. A
 clean PASS means the plugin will load and its skills will register as `<plugin-name>:<skill-name>`.
 
+### 7. If publishing through a marketplace, refresh source hashes
+Marketplace catalogs may carry `sourceHash: "sha256:<64 hex chars>"` beside each plugin entry.
+This is not a plugin manifest field. It belongs in `.agents/plugins/marketplace.json` and lets
+Cowork detect opt-in updates without reinstalling automatically.
+
+When editing a plugin in the `cowork-skills-plugins` marketplace repo:
+
+1. Remove tracked provenance/noise from the published source root before hashing:
+   `.cowork-plugin/install.json`, `.codex-plugin/install.json`, `.cowork-skill.json`, and
+   `.DS_Store`.
+2. Run the marketplace helper from the repo root:
+
+   ```bash
+   node scripts/update-source-hashes.mjs
+   node scripts/update-source-hashes.mjs --check
+   ```
+
+3. Commit the plugin changes and the resulting `.agents/plugins/marketplace.json` hash update
+   together. Do not hand-edit `sourceHash`; let the script compute it.
+
 ## Editing an existing plugin
 
 To change a plugin, edit its files in place and re-validate:
@@ -117,6 +137,9 @@ To change a plugin, edit its files in place and re-validate:
    (`<name>:<skill-name>`); keep it kebab-case. Unlike a skill, a plugin's root directory name need
    not equal its `name`. Keep every declared path inside the root.
 6. **Re-validate.** Run `scripts/validate-plugin.ts` against the plugin root and fix every error.
+7. **Refresh marketplace hashes when applicable.** If the plugin is listed in
+   `.agents/plugins/marketplace.json`, run `node scripts/update-source-hashes.mjs` and then
+   `node scripts/update-source-hashes.mjs --check` from the marketplace repo root.
 
 ## Minimal manifest
 

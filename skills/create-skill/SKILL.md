@@ -106,6 +106,26 @@ limits, and string-only `metadata` values. A clean PASS means the skill will be 
 loaded. Then confirm discovery: the skill should appear in the skill list and resolve on an
 `@<name>` mention.
 
+### 7. If publishing through a marketplace, refresh source hashes
+Marketplace catalogs may carry `sourceHash: "sha256:<64 hex chars>"` beside standalone skill
+entries. This is not skill frontmatter and does not belong in `SKILL.md`; it belongs in
+`.agents/plugins/marketplace.json`.
+
+When editing a standalone skill in the `cowork-skills-plugins` marketplace repo:
+
+1. Do not publish installer provenance or desktop noise in the source root. Remove tracked
+   `.cowork-skill.json`, `.cowork-plugin/install.json`, `.codex-plugin/install.json`, and
+   `.DS_Store` files before hashing.
+2. Run the marketplace helper from the repo root:
+
+   ```bash
+   node scripts/update-source-hashes.mjs
+   node scripts/update-source-hashes.mjs --check
+   ```
+
+3. Commit the skill change and the resulting `.agents/plugins/marketplace.json` hash update
+   together. Do not hand-edit `sourceHash`; let the script compute it.
+
 ## Editing an existing skill
 
 To improve or fix a skill, edit its files in place and re-validate:
@@ -124,9 +144,13 @@ To improve or fix a skill, edit its files in place and re-validate:
 4. **Keep the invariants.** `name` must still equal the directory name and match the kebab-case
    regex; `description` ≤1024 chars; every `metadata` value a string. **Renaming a skill means
    renaming both the directory and the frontmatter `name`** (and updating `triggers` and anything
-   that references it). Leave any `.cowork-skill.json` file in place.
+   that references it). Leave `.cowork-skill.json` in place for a live installed copy, but do not
+   commit it to a marketplace source package.
 5. **Re-validate.** Run `scripts/validate-skill.ts` against the directory for a clean PASS, then
    re-invoke the skill to confirm the new behavior.
+6. **Refresh marketplace hashes when applicable.** If the skill is listed in
+   `.agents/plugins/marketplace.json`, run `node scripts/update-source-hashes.mjs` and then
+   `node scripts/update-source-hashes.mjs --check` from the marketplace repo root.
 
 ## Quick frontmatter reference
 
