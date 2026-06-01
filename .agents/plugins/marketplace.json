@@ -10,6 +10,7 @@
         "source": "local",
         "path": "./plugins/workspace-tools"
       },
+      "sourceHash": "sha256:f4f5709015b681664074189e7b86d1a7e5c2a7ea85f93fadab697bc36e744528",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
@@ -24,6 +25,7 @@
         "source": "local",
         "path": "./skills/create-skill"
       },
+      "sourceHash": "sha256:c50bae30b28c0dca3e0d28047835289751dd9868ba1b322ed9832d52ec2730c6",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "NONE"
@@ -36,6 +38,7 @@
         "source": "local",
         "path": "./skills/create-plugin"
       },
+      "sourceHash": "sha256:05393be32b1656587727deeb8c519ea0d9ec883acdc71ef8825480d51399d065",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "NONE"
@@ -48,6 +51,7 @@
         "source": "local",
         "path": "./skills/apple-native-transcribe"
       },
+      "sourceHash": "sha256:f3c2d06bb718471d74e6a8a7a0a87270e7d08d7ab0c9ae1e84917cf57b4b5031",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "NONE"
