@@ -17,6 +17,18 @@ from pdf2image import convert_from_path, pdfinfo_from_path
 TWIPS_PER_INCH: int = 1440
 
 
+def _soffice_command() -> str:
+    """Return Cowork's managed headless-only LibreOffice launcher."""
+
+    command = os.environ.get("COWORK_RUNTIME_SOFFICE", "").strip()
+    if not command:
+        raise RuntimeError(
+            "COWORK_RUNTIME_SOFFICE is missing. Reinstall or roll back the Cowork runtime; "
+            "do not fall back to a host LibreOffice executable."
+        )
+    return command
+
+
 def _guard_macos_tmpdir_for_soffice() -> None:
     """Avoid launching LibreOffice from the known-crashing macOS temp state."""
 
@@ -105,6 +117,7 @@ def _build_lo_env(user_profile: str) -> dict:
     """
 
     env = os.environ.copy()
+    env["SAL_DISABLE_SYNCHRONOUS_PRINTER_DETECTION"] = "1"
     env["HOME"] = user_profile
     env.setdefault("XDG_CONFIG_HOME", join(user_profile, "xdg_config"))
     env.setdefault("XDG_CACHE_HOME", join(user_profile, "xdg_cache"))
@@ -171,7 +184,7 @@ def convert_to_pdf(
 
     # Try direct DOC(X) -> PDF
     cmd_pdf = [
-        "soffice",
+        _soffice_command(),
         "-env:UserInstallation=file://" + user_profile,
         "--invisible",
         "--headless",
@@ -199,7 +212,7 @@ def convert_to_pdf(
 
     # Fallback: DOCX -> ODT, then ODT -> PDF
     cmd_odt = [
-        "soffice",
+        _soffice_command(),
         "-env:UserInstallation=file://" + user_profile,
         "--invisible",
         "--headless",
@@ -217,7 +230,7 @@ def convert_to_pdf(
 
     if exists(odt_path):
         cmd_odt_pdf = [
-            "soffice",
+            _soffice_command(),
             "-env:UserInstallation=file://" + user_profile,
             "--invisible",
             "--headless",

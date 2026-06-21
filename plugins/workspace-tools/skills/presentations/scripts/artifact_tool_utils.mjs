@@ -57,14 +57,10 @@ export function slideNumberFromModuleName(filePath) {
 }
 
 function defaultRuntimeNodeModules() {
-  return path.join(
-    process.env.HOME || process.cwd(),
-    ".cache",
-    "cowork-runtimes",
-    ["cowork", "primary", "runtime"].join("-"),
-    "dependencies",
-    "node",
-    "node_modules",
+  const configured = process.env.COWORK_RUNTIME_NODE_MODULES?.trim();
+  if (configured) return path.resolve(configured);
+  throw new Error(
+    "COWORK_RUNTIME_NODE_MODULES is not set. Start this skill through Cowork so the separately downloaded runtime is active.",
   );
 }
 

@@ -10,7 +10,7 @@
         "source": "local",
         "path": "./plugins/workspace-tools"
       },
-      "sourceHash": "sha256:f4f5709015b681664074189e7b86d1a7e5c2a7ea85f93fadab697bc36e744528",
+      "sourceHash": "sha256:485b455da2b600faef16af9aa754c414ebea7b724717c00039bec675cae809f0",
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"

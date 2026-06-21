@@ -10,9 +10,14 @@ Each plugin lives under `plugins/<name>/` with a required
 The marketplace catalog lives at `.agents/plugins/marketplace.json` and points
 to the local plugin packages in `plugins/`.
 
+This repository is the source of truth for skill instructions and helper
+scripts. Cowork downloads these plugins separately from the platform runtime;
+the runtime supplies executables and libraries only and is never a plugin
+discovery root.
+
 ## Plugins
 
-- `plugins/workspace-tools` bundles the `documents`, `presentations`, and
+- `plugins/workspace-tools` bundles the `documents`, `pdf`, `presentations`, and
   `spreadsheets` skills for creating, editing, analyzing, and verifying common
   workspace artifacts.
 
@@ -107,6 +112,18 @@ Get-ChildItem .\plugins -Directory | ForEach-Object {
 
 If your local validator still lives under another app directory, use that real
 validator path. The skill format is the same; the repo naming is Cowork.
+
+Runtime-dependent helpers must use the public `COWORK_RUNTIME_*` environment
+contract. In particular, resolve Node packages through
+`COWORK_RUNTIME_NODE_MODULES`; do not hardcode `.cache/codex-runtimes`, an old
+Cowork cache, or a particular runtime date.
+
+Check that boundary and marketplace hashes before publishing:
+
+```powershell
+node scripts/check-runtime-contract.mjs
+node scripts/update-source-hashes.mjs --check
+```
 
 ## Publishing Notes
 

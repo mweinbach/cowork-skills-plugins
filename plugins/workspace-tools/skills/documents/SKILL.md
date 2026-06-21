@@ -10,6 +10,7 @@ Use this skill when you need to create or modify `.docx` files **in this contain
 ## Tools + Contract
 
 - Use the Cowork-managed artifact runtime for docx artifact work: its bundled Node/Python runtimes and package directory are authoritative. Do not use system `node`, system `python`, global npm packages, or repo-local installs.
+- Use only `COWORK_RUNTIME_SOFFICE` for LibreOffice conversion. It is Cowork's managed headless-only launcher; host LibreOffice binaries and the runtime's private program files are not valid substitutes.
 - For document creation and deterministic OOXML edits, it is still acceptable to use the bundled Python/OOXML helper scripts in this skill package when the JS surface is incomplete.
 - Run any builder or helper file from a writable workspace or temp directory, not from the managed dependency directory itself.
 - Final user-facing responses should describe only the requested document result and link only to the final `.docx` deliverable unless the user explicitly asks for QA intermediates.
@@ -24,9 +25,9 @@ DOCX text extraction (or reading XML) will miss layout defects: clipping, overla
 - Open the PNGs (100% zoom) and confirm every page is clean
 - If anything looks off, fix the DOCX and **re-render** (repeat until flawless)
 
-If rendering fails because LibreOffice/`soffice` is missing, it is acceptable to return the requested DOCX without rendered PNG QA. In that fallback case, use the relevant Markdown task docs in this skill package as the authoritative guidance for building and checking the document structurally, state clearly in the final response that rendering/visual QA could not be completed, and do not imply that the document passed the render gate.
+If the managed launcher is missing or fails, treat that as an invalid Cowork runtime: reinstall or roll back the runtime and retry. Do not bypass the policy launcher with a host `soffice`, and do not waive the render gate.
 
-If rendering fails for any other reason, fix rendering first (LibreOffice profile/HOME, conversion errors, or renderer setup) rather than guessing.
+If rendering fails, fix rendering first (runtime integrity, conversion errors, or renderer setup) rather than guessing.
 
 **Deliverable discipline:** Rendered artifacts (PNGs and optional PDFs) are for internal QA only. Unless the user explicitly asks for intermediates, **return only the requested final deliverable** (e.g., when the task asks for a DOCX, deliver the DOCX — not page images or PDFs).
 
@@ -111,7 +112,7 @@ It is very important that the document is professional and aesthetically pleasin
    - Which form factors should represent each type of information, such as prose sections, bullets, numbered steps, checklists, callouts, tables, forms, images, or appendices? Plan the design for each chosen component.
    - Think about the general spacing and layout. What will be the default body spacing? What page budget is allocated between packaging and substance? How will page breaks behave around tables and figures, since we must make sure to avoid large blank gaps, keep captions and their visuals together when possible, and keep content from becoming too wide by maintaining generous side margins so the page feels balanced and natural.
    - Think about font, type scale, consistent accent treatment, etc. Try to avoid forcing large chunks of small text into narrow areas. When space is tight, adjust font size, line breaks, alignment, or layout instead of cramming in more text.
-2. Once you have a working DOCX, continue iterating until the entire document is polished and correct. After every change or edit, render the DOCX and review it carefully to evaluate the result. If LibreOffice/`soffice` is missing, continue using the relevant Markdown task docs in this skill package for structural QA and document-design guidance, and disclose that visual render QA was skipped. The plan from (1) should guide you, but it is only a flexible draft; you should update your decisions as needed throughout the revision process. Important: each time you render and reflect, you should check for both:
+2. Once you have a working DOCX, continue iterating until the entire document is polished and correct. After every change or edit, render the DOCX through the managed headless launcher and review it carefully. If the launcher is unavailable, repair or roll back the runtime before continuing. The plan from (1) should guide you, but it is only a flexible draft; you should update your decisions as needed throughout the revision process. Important: each time you render and reflect, you should check for both:
 
    1. Design aesthetics: the document should be aesthetically pleasing and easy to skim. Ask yourself: if a human were to look at my document, would they find it aesthetically nice? It should feel natural, smooth, and visually cohesive.
    2. Formatting issues that need to be fixed: e.g. text overlap, overflow, cramped spacing between adjacent elements, awkward spacing in tables/charts, awkward page breaks, etc. This is super important. Do not stop revising until all formatting issues are fixed.

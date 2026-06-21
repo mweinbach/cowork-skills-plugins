@@ -3,18 +3,13 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import fs from "node:fs";
 import { createRequire } from "node:module";
-import os from "node:os";
 import path from "node:path";
 
 function defaultRuntimeNodeModules() {
-  return path.join(
-    os.homedir(),
-    ".cache",
-    "cowork-runtimes",
-    "cowork-primary-runtime",
-    "dependencies",
-    "node",
-    "node_modules",
+  const configured = process.env.COWORK_RUNTIME_NODE_MODULES?.trim();
+  if (configured) return path.resolve(configured);
+  throw new Error(
+    "COWORK_RUNTIME_NODE_MODULES is not set. Start this skill through Cowork so the separately downloaded runtime is active.",
   );
 }
 
