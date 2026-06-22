@@ -49,6 +49,12 @@ const rendererSource = await fs.readFile(path.join(pluginRoot, documentRenderer)
 if (!rendererSource.includes("COWORK_RUNTIME_SOFFICE")) {
   errors.push(`${documentRenderer} must invoke the managed headless soffice launcher.`);
 }
+if (!rendererSource.includes("COWORK_RUNTIME_POPPLER_BIN")) {
+  errors.push(`${documentRenderer} must resolve Poppler through the managed runtime.`);
+}
+if ((rendererSource.match(/poppler_path=/g) ?? []).length < 2) {
+  errors.push(`${documentRenderer} must pass the managed Poppler path to every pdf2image call.`);
+}
 if (!rendererSource.includes("SAL_DISABLE_SYNCHRONOUS_PRINTER_DETECTION")) {
   errors.push(`${documentRenderer} must disable synchronous printer detection.`);
 }

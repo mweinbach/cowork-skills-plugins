@@ -29,6 +29,18 @@ def _soffice_command() -> str:
     return command
 
 
+def _poppler_path() -> str:
+    """Return Cowork's managed Poppler binary directory without host fallback."""
+
+    poppler_path = os.environ.get("COWORK_RUNTIME_POPPLER_BIN", "").strip()
+    if not poppler_path:
+        raise RuntimeError(
+            "COWORK_RUNTIME_POPPLER_BIN is missing. Reinstall or roll back the Cowork runtime; "
+            "do not fall back to host pdfinfo or pdftoppm executables."
+        )
+    return poppler_path
+
+
 def _guard_macos_tmpdir_for_soffice() -> None:
     """Avoid launching LibreOffice from the known-crashing macOS temp state."""
 
@@ -266,7 +278,7 @@ def calc_dpi_via_pdf(input_path: str, max_w_px: int, max_h_px: int, verbose: boo
             if not (pdf_path and exists(pdf_path)):
                 raise RuntimeError("Failed to convert input to PDF for DPI computation.\n" + debug)
 
-            info = pdfinfo_from_path(pdf_path)
+            info = pdfinfo_from_path(pdf_path, poppler_path=_poppler_path())
             size_val = info.get("Page size")
             if not size_val:
                 for k, v in info.items():
@@ -332,6 +344,7 @@ def rasterize(
                     output_folder=out_dir,
                     paths_only=True,
                     output_file="page",
+                    poppler_path=_poppler_path(),
                 ),
             )
 
